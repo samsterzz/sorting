@@ -1,22 +1,25 @@
 function bubbleSort(arr) {
 
-    for (var i = 0; i < arr.length; i++) {
-        var arr1 = arr
-        arr = swap(arr[i], arr[i + 1]);
+  for (var i = 0; i < arr.length - 1; i++) {
+    for (var k = i; k < arr.length; k++) {
+      if (!isInOrder(arr, i)) {
+        swap(arr, k);
+      }
     }
-
+  }
+  return arr;
 }
 
-function swap(x, y) {
-    var swapArr = [];
+function isInOrder(arr, index) {
+  if (index === arr.length) {
+    return true;
+  } else {
+    return arr[index] <= arr[index + 1];
+  }
+}
 
-    if (x <= y) {
-        swapArr.push(x);
-        swapArr.push(y);
-    } else {
-        swapArr.push(y);
-        swapArr.push(x); 
-    }
-
-    return swapArr;
+function swap(arr, index) {
+  var temp = arr[index];
+  arr[index] = arr[index + 1];
+  arr[index + 1] = temp;
 }
